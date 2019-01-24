@@ -6,7 +6,7 @@ class App extends React.Component {
         super(props);
         //Initializes state object and assigns a value of null to it's property "latitude"
         //THIS IS THE ONLY TIME a direct assignment to this.state can be done
-        this.state = { lat: null };
+        this.state = { lat: null, errorMessage:'' };
         //Retrieve current location when state is initialized
         window.navigator.geolocation.getCurrentPosition(
             position => {
@@ -14,16 +14,22 @@ class App extends React.Component {
                 //by calling setState!!!
                 this.setState({ lat:position.coords.latitude});
             },
-            err => console.log(err)
+            err => {
+               this.setState({ errorMessage:err.message});
+            }
         );
     }
 
 
     //  React requires definition of render method
     render() {
-        
-
-        return <div>Latitude: {this.state.lat}</div>
+        return (
+            <div>
+                Latitude: {this.state.lat}
+                <br />
+                Error: {this.state.errorMessage}    
+            </div>
+        );
     }
 }
 
