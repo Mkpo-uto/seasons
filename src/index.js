@@ -39,7 +39,7 @@ class App extends React.Component {
             //<div>Latitude: {this.state.lat}</div>
         }
 
-        return < Spinner />
+        return < Spinner message = "Please accept location request" />
     }
 }
 
